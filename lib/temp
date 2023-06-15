@@ -1,0 +1,62 @@
+// Text(
+//                         'Tap here to find the song',
+//                         textAlign: TextAlign.center,
+//                         style: TextStyle(
+//                           color: Colors.black,
+//                           fontSize: 10,
+//                           fontWeight: FontWeight.bold,
+//                         ),
+//                       ),
+
+
+
+//                       image
+
+//                        SizedBox(
+//                         height: 300,
+//                         child: Image.asset('assets/images/mostly.jpg', fit: BoxFit.fill),
+//                         ),
+
+
+// Row(
+//     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//     children: [
+//       InkWell(
+//         child: Container(
+//           height: 250,
+//           width: 30,
+//           color: Colors.amber,
+//           child: Icon(Icons.replay_10),
+//         ),
+//         radius: 60,
+//         splashColor: Colors.green,
+//         onDoubleTap: () {
+//           print('hai');
+//         },
+//       ),
+//       // Center(
+//       //     child: IconButton(
+//       //         onPressed: () {}, icon: const Icon(Icons.replay_10))),
+//       // const SizedBox(
+//       //   width: 6,
+//       // ),
+//       Container(
+//         width: 250,
+//         height: 250,
+//         color: Colors.blue,
+//         child: Image.asset(
+//           'assets/images/Nowplaying.jpeg',
+//           fit: BoxFit.cover,
+//         ),
+//       ),
+//       // const SizedBox(
+//       //   width: 6,
+//       // ),
+//       Center(
+//         child: IconButton(
+//           onPressed: () {},
+//           icon: const Icon(Icons.forward_10),
+//         ),
+//       ),
+//     ],
+//   ),
