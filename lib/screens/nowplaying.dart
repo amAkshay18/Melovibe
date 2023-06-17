@@ -134,12 +134,12 @@ class _NowPlayingScreenState extends State<NowPlayingScreen> {
                   children: [
                     IconButton(
                       onPressed: () {},
-                      icon: const Icon(Icons.lock),
+                      icon: const Icon(Icons.lock_open),
                     ),
                     const SizedBox(width: 20),
                     IconButton(
                       onPressed: () {},
-                      icon: const Icon(Icons.favorite),
+                      icon: const Icon(Icons.favorite_border),
                     ),
                   ],
                 ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:offlinemusicplayer/DataBase/Model/songdetails.dart';
+import 'package:offlinemusicplayer/functions/audioconverterfunctions.dart';
 import 'package:offlinemusicplayer/screens/mostlyplayedscreen.dart';
 import 'package:offlinemusicplayer/screens/recentlyplayed.dart';
 import 'package:offlinemusicplayer/screens/settingsscreen.dart';
+import 'package:offlinemusicplayer/screens/splashscreen.dart';
 import '../DataBase/Model/allsongsdbfunctions.dart';
 import 'melofinder.dart';
 import 'myfavorites.dart';
@@ -158,10 +159,9 @@ class _ScreenHomeState extends State<ScreenHome> {
                 ],
               ),
             ),
-            // listView(),
             ValueListenableBuilder(
-              valueListenable: allSongNotifier,
-              builder: (context, List<SongDetails> value, child) {
+              valueListenable: allsongBodyNotifier,
+              builder: (context, value, child) {
                 return ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -185,6 +185,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                             Expanded(
                               child: InkWell(
                                 onTap: () {
+                                  audioConverter(listOfSongs, index);
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -200,10 +201,10 @@ class _ScreenHomeState extends State<ScreenHome> {
                                       borderRadius: BorderRadius.circular(15),
                                       color: Colors.grey),
                                   child: ListTile(
-                                    title:
-                                        Text(value[index].name!, maxLines: 1),
+                                    title: Text(listOfSongs[index].name!,
+                                        maxLines: 1),
                                     subtitle: Text(
-                                        value[index].artist ?? 'unknown',
+                                        listOfSongs[index].artist ?? 'unknown',
                                         maxLines: 1),
                                     trailing: PopupMenuButton<String>(
                                       icon: const Icon(
@@ -252,7 +253,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                         ),
                       );
                     },
-                    itemCount: value.length);
+                    itemCount: listOfSongs.length);
               },
             ),
           ],
