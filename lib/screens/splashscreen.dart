@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:offlinemusicplayer/DataBase/Model/songdetails.dart';
+import 'package:hive/hive.dart';
+import 'package:offlinemusicplayer/database/model/song_model.dart';
+import 'package:offlinemusicplayer/functions/favoritesfunctions.dart';
 import 'package:offlinemusicplayer/screens/bottomnavigationscreen.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import '../functions/fetchfunctions.dart';
+import '../functions/recentlyplayedfunctions.dart';
 
-List<SongDetails> listOfSongs = [];
+List<AllSongModel> allSongs = [];
 
 class ScreenSplash extends StatefulWidget {
   const ScreenSplash({super.key});
@@ -66,7 +69,18 @@ class _ScreenSplashState extends State<ScreenSplash> {
     await Future.delayed(const Duration(seconds: 2));
     hasStoragePermission = await CheckPermission.checkAndRequestPermissions();
     if (hasStoragePermission) {
-      await songfetch();
+      // ============================================SongFetch===========================================
+      List<SongModel> fetchSong = await audioQuery.querySongs();
+      for (SongModel element in fetchSong) {
+        if (element.fileExtension == 'mp3') {
+          allSongs.add(AllSongModel(
+              name: element.displayNameWOExt,
+              artist: element.artist,
+              duration: element.duration,
+              id: element.id,
+              uri: element.uri));
+        }
+      }
       // ignore: use_build_context_synchronously
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
@@ -74,6 +88,8 @@ class _ScreenSplashState extends State<ScreenSplash> {
         ),
       );
     }
+    await recentfetch();
+    await favfetch();
   }
 }
 
@@ -87,18 +103,16 @@ class CheckPermission {
   }
 }
 
-songfetch() async {
-  List<SongModel> fetchsongs = await audioQuery.querySongs();
-  for (SongModel element in fetchsongs) {
-    if (element.fileExtension == "mp3") {
-      listOfSongs.add(
-        SongDetails(
-            name: element.displayName,
-            artist: element.artist,
-            duration: element.duration,
-            id: element.id,
-            url: element.uri),
-      );
+recentfetch() async {
+  Box<int> recentDb = await Hive.openBox('recent');
+  List<AllSongModel> recenttemp = [];
+  for (int element in recentDb.values) {
+    for (AllSongModel song in allSongs) {
+      if (element == song.id) {
+        recenttemp.add(song);
+        break;
+      }
     }
   }
+  recentList.value = recenttemp.reversed.toList();
 }

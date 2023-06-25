@@ -1,44 +1,44 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'songdetails.dart';
+part of 'song_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class SongDetailsAdapter extends TypeAdapter<SongDetails> {
+class AllSongModelAdapter extends TypeAdapter<AllSongModel> {
   @override
-  final int typeId = 0;
+  final int typeId = 1;
 
   @override
-  SongDetails read(BinaryReader reader) {
+  AllSongModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return SongDetails(
-      name: fields[1] as String?,
-      artist: fields[2] as String?,
-      duration: fields[3] as int?,
-      id: fields[4] as int?,
-      url: fields[5] as String?,
+    return AllSongModel(
+      name: fields[0] as String?,
+      artist: fields[1] as String?,
+      duration: fields[2] as int?,
+      id: fields[3] as int?,
+      uri: fields[4] as String?,
     );
   }
 
   @override
-  void write(BinaryWriter writer, SongDetails obj) {
+  void write(BinaryWriter writer, AllSongModel obj) {
     writer
       ..writeByte(5)
-      ..writeByte(1)
+      ..writeByte(0)
       ..write(obj.name)
-      ..writeByte(2)
+      ..writeByte(1)
       ..write(obj.artist)
-      ..writeByte(3)
+      ..writeByte(2)
       ..write(obj.duration)
-      ..writeByte(4)
+      ..writeByte(3)
       ..write(obj.id)
-      ..writeByte(5)
-      ..write(obj.url);
+      ..writeByte(4)
+      ..write(obj.uri);
   }
 
   @override
@@ -47,7 +47,7 @@ class SongDetailsAdapter extends TypeAdapter<SongDetails> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is SongDetailsAdapter &&
+      other is AllSongModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

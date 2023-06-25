@@ -1,37 +1,7 @@
-// import 'package:flutter/material.dart';
-
-// class SettingsScreen extends StatelessWidget {
-//   const SettingsScreen({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//         child: Scaffold(
-//       appBar: AppBar(
-//         backgroundColor: Colors.grey,
-//         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-//         title: const Text(
-//           'Settings',
-//           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-//         ),
-//         leading: IconButton(
-//             onPressed: () {
-//               Navigator.pop(context);
-//             },
-//             icon: const Icon(
-//               Icons.arrow_back,
-//               size: 28,
-//               color: Colors.black,
-//             )),
-//       ),
-//       body: const Column(
-//         children: [],
-//       ),
-//     ));
-//   }
-// }
-
 import 'package:flutter/material.dart';
+import 'package:offlinemusicplayer/screens/aboutusscreen.dart';
+import 'package:offlinemusicplayer/screens/privacypolicyscreen.dart';
+import 'package:offlinemusicplayer/screens/termsandconditionsscreen.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -48,8 +18,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.grey,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(16),
+            ),
+          ),
           title: const Text(
             'Settings',
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -66,18 +39,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         body: Column(
           children: [
-            ListTile(
-              title: const Text('Dark Mode'),
-              trailing: Switch(
-                activeColor: Colors.black,
-                value: istrue,
-                onChanged: (value) {
-                  setState(() {
-                    istrue = value;
-                  });
-                },
-              ),
-            ),
+            // ListTile(
+            //   title: const Text('Dark Mode'),
+            //   trailing: Switch(
+            //     activeColor: Colors.black,
+            //     value: istrue,
+            //     onChanged: (value) {
+            //       setState(() {
+            //         istrue = value;
+            //       });
+            //     },
+            //   ),
+            // ),
             // ListTile(
             //   title: const Text('Notifications'),
             //   trailing: Switch(
@@ -109,21 +82,45 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ListTile(
               title: const Text('Privacy Policy'),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const PrivacyPolicyScreen(),
+                      ),
+                    );
+                  }
+                },
                 icon: const Icon(Icons.privacy_tip),
               ),
             ),
             ListTile(
               title: const Text('Terms & Conditions'),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const TermsAndConditionsScreen(),
+                      ),
+                    );
+                  }
+                },
                 icon: const Icon(Icons.arrow_forward_ios),
               ),
             ),
             ListTile(
               title: const Text('About Us'),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AboutUsScreen(),
+                      ),
+                    );
+                  }
+                },
                 icon: const Icon(Icons.arrow_forward_ios),
               ),
             ),

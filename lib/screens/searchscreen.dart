@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:offlinemusicplayer/screens/splashscreen.dart';
 
-import 'nowplaying.dart';
+import 'nowplayingscreen.dart';
 
 class SearchScreeen extends StatelessWidget {
   const SearchScreeen({super.key});
@@ -12,8 +12,11 @@ class SearchScreeen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.grey,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(16),
+            ),
+          ),
           title: const Text(
             'Search',
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -48,14 +51,14 @@ class SearchScreeen extends StatelessWidget {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(16),
                               child: Image.asset(
-                                'assets/images/song1.jpg',
+                                'assets/images/dummySong.jpg',
                                 width: 70,
                                 height: 70,
                                 fit: BoxFit.cover,
                               ),
                             ),
                             const SizedBox(
-                              width: 14,
+                              width: 8,
                             ),
                             Expanded(
                               child: InkWell(
@@ -75,10 +78,14 @@ class SearchScreeen extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(15),
                                       color: Colors.grey),
                                   child: ListTile(
-                                    title: Text(listOfSongs[index].name!,
+                                    title: Text(allSongs[index].name!,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
                                         maxLines: 1),
                                     subtitle: Text(
-                                        listOfSongs[index].artist ?? 'unknown',
+                                        allSongs[index].artist ?? 'unknown',
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
                                         maxLines: 1),
                                     trailing: PopupMenuButton<String>(
                                       icon: const Icon(
@@ -127,9 +134,8 @@ class SearchScreeen extends StatelessWidget {
                         ),
                       );
                     },
-                    itemCount: listOfSongs.length),
+                    itemCount: allSongs.length),
               ),
-              // listView()
             ],
           ),
         ),

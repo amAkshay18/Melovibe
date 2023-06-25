@@ -13,16 +13,15 @@ Widget PlaylistView(String title) {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(16),
                   child: Image.asset(
-                    'assets/images/song1.jpg',
+                    'assets/images/dummySong.jpg',
                     width: 60,
                     height: 60,
                     fit: BoxFit.cover,
                   ),
                 ),
                 const SizedBox(
-                  width: 14,
+                  width: 8,
                 ),
-                //=====================
                 Expanded(
                   child: InkWell(
                     onTap: () {
@@ -41,7 +40,10 @@ Widget PlaylistView(String title) {
                           borderRadius: BorderRadius.circular(15),
                           color: Colors.grey),
                       child: ListTile(
-                        title: Text('$title${index + 1}'),
+                        title: Text(
+                          '$title${index + 1}',
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
                         trailing: PopupMenuButton<String>(
                           icon: const Icon(
                             Icons.more_vert,

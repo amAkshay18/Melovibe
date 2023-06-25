@@ -1,60 +1,8 @@
-// import 'package:flutter/material.dart';
-// import 'package:avatar_glow/avatar_glow.dart';
-
-// class MelofinderScreen extends StatefulWidget {
-//   const MelofinderScreen({super.key});
-
-//   @override
-//   State<MelofinderScreen> createState() => _MelofinderScreenState();
-// }
-
-// class _MelofinderScreenState extends State<MelofinderScreen> {
-//   bool animate = true;
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: Scaffold(
-//         appBar: AppBar(
-//           backgroundColor: Colors.grey,
-//           shape:
-//               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-//           title: const Text(
-//             'Melofinder',
-//             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-//           ),
-//           leading: IconButton(
-//               onPressed: () {
-//                 Navigator.pop(context);
-//               },
-//               icon: const Icon(
-//                 Icons.arrow_back,
-//                 size: 28,
-//                 color: Colors.black,
-//               )),
-//         ),
-//         body: Center(
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//             children: [
-//               const Text('Tap here to find the song'),
-//               SizedBox(
-//                 height: 300,
-//                 child:
-//                     Image.asset('assets/images/mostly.jpg', fit: BoxFit.fill),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 
 class MelofinderScreen extends StatefulWidget {
-  const MelofinderScreen({Key? key});
+  const MelofinderScreen({super.key, Key? keys});
 
   @override
   State<MelofinderScreen> createState() => _MelofinderScreenState();
@@ -72,8 +20,11 @@ class _MelofinderScreenState extends State<MelofinderScreen> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.grey,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(16),
+            ),
+          ),
           title: const Text(
             'Melofinder',
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -93,9 +44,6 @@ class _MelofinderScreenState extends State<MelofinderScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // const SizedBox(
-            //   height: 50,
-            // ),
             const Text(
               'Tap to MeloFind',
               textAlign: TextAlign.center,
@@ -143,7 +91,6 @@ class _MelofinderScreenState extends State<MelofinderScreen> {
             Container(
               decoration: BoxDecoration(
                   color: Colors.grey, borderRadius: BorderRadius.circular(14)),
-              // color: Colors.grey,
               width: 250,
               height: 90,
               child: const Center(

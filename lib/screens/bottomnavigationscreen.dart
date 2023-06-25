@@ -3,14 +3,19 @@ import 'package:offlinemusicplayer/screens/homescreen.dart';
 import 'package:offlinemusicplayer/screens/allplaylistsscreen.dart';
 import 'package:offlinemusicplayer/screens/searchscreen.dart';
 
+import 'miniplayer.dart';
+
 class BottomNaviScreen extends StatelessWidget {
   BottomNaviScreen({super.key});
+
   final ValueNotifier<int> _currentIndex = ValueNotifier(0);
+
   final screen = [
     const ScreenHome(),
     const SearchScreeen(),
     const AllPlaylistScreen()
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +28,9 @@ class BottomNaviScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: const BorderRadius.vertical(
+          top: Radius.circular(16),
+        ),
         child: ValueListenableBuilder(
           valueListenable: _currentIndex,
           builder: (BuildContext context, int updatedindex, child) {
@@ -59,6 +66,7 @@ class BottomNaviScreen extends StatelessWidget {
           },
         ),
       ),
+      bottomSheet: const MiniPlayer(),
     );
   }
 }

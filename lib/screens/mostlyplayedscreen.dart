@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:offlinemusicplayer/screens/splashscreen.dart';
-import 'nowplaying.dart';
+import 'nowplayingscreen.dart';
 
 class MostlyPlayedScreen extends StatelessWidget {
   const MostlyPlayedScreen({super.key});
@@ -11,8 +11,11 @@ class MostlyPlayedScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.grey,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(16),
+            ),
+          ),
           title: const Text(
             'Mostly played',
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -39,14 +42,14 @@ class MostlyPlayedScreen extends StatelessWidget {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(16),
                             child: Image.asset(
-                              'assets/images/song1.jpg',
+                              'assets/images/dummySong.jpg',
                               width: 70,
                               height: 70,
                               fit: BoxFit.cover,
                             ),
                           ),
                           const SizedBox(
-                            width: 14,
+                            width: 8,
                           ),
                           Expanded(
                             child: InkWell(
@@ -54,8 +57,8 @@ class MostlyPlayedScreen extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) =>
-                                        const NowPlayingScreen(),
+                                    builder: (context) => NowPlayingScreen(
+                                        music: allSongs[index]),
                                   ),
                                 );
                               },
@@ -66,10 +69,16 @@ class MostlyPlayedScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(15),
                                     color: Colors.grey),
                                 child: ListTile(
-                                  title: Text(listOfSongs[index].name!,
-                                      maxLines: 1),
+                                  title: Text(
+                                    allSongs[index].name!,
+                                    maxLines: 1,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                   subtitle: Text(
-                                      listOfSongs[index].artist ?? 'unknown',
+                                      allSongs[index].artist ?? 'unknown',
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold),
                                       maxLines: 1),
                                   trailing: PopupMenuButton<String>(
                                     icon: const Icon(
@@ -118,13 +127,10 @@ class MostlyPlayedScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  itemCount: listOfSongs.length),
+                  itemCount: allSongs.length),
             ),
           ],
         ),
-        // Row(
-        //   children: [listView()],
-        // ),
       ),
     );
   }

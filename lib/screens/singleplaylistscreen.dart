@@ -24,8 +24,11 @@ class SinglePlayListScreen extends StatelessWidget {
                 color: Colors.black,
               )),
           backgroundColor: Colors.grey,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(16),
+            ),
+          ),
           title: Text(
             playlistname,
             style: const TextStyle(
@@ -44,14 +47,14 @@ class SinglePlayListScreen extends StatelessWidget {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(16),
                             child: Image.asset(
-                              'assets/images/song1.jpg',
+                              'assets/images/dummySong.jpg',
                               width: 70,
                               height: 70,
                               fit: BoxFit.cover,
                             ),
                           ),
                           const SizedBox(
-                            width: 14,
+                            width: 8,
                           ),
                           Expanded(
                             child: InkWell(
@@ -65,9 +68,17 @@ class SinglePlayListScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(15),
                                     color: Colors.grey),
                                 child: ListTile(
-                                  title: Text(listOfSongs[index].name!),
+                                  title: Text(
+                                    allSongs[index].name!,
+                                    maxLines: 1,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                   subtitle: Text(
-                                      listOfSongs[index].artist ?? 'unknown'),
+                                    allSongs[index].artist ?? 'unknown',
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                   trailing: PopupMenuButton<String>(
                                     icon: const Icon(
                                       Icons.more_vert,
@@ -115,7 +126,7 @@ class SinglePlayListScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  itemCount: listOfSongs.length),
+                  itemCount: allSongs.length),
             ),
           ],
         ),

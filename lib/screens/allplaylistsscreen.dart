@@ -11,8 +11,11 @@ class AllPlaylistScreen extends StatelessWidget {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Colors.grey,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(16),
+            ),
+          ),
           title: const Text(
             'PlayLists',
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
