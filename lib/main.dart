@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:offlinemusicplayer/database/model/fav_model.dart';
+import 'package:offlinemusicplayer/database/model/playlistmodel.dart';
 
 import 'package:offlinemusicplayer/database/model/song_model.dart';
 import 'package:offlinemusicplayer/screens/splashscreen.dart';
@@ -15,6 +16,9 @@ void main() async {
   }
   if (!Hive.isAdapterRegistered(FavourModelAdapter().typeId)) {
     Hive.registerAdapter(FavourModelAdapter());
+  }
+  if (!Hive.isAdapterRegistered(PlayListModelAdapter().typeId)) {
+    Hive.registerAdapter(PlayListModelAdapter());
   }
   await Hive.openBox<AllSongModel>('favorite');
   runApp(const MyApp());
@@ -48,6 +52,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+          bottomSheetTheme:
+              const BottomSheetThemeData(backgroundColor: Colors.transparent)
           // appBarTheme: AppBarTheme(
           //     color: mediaQueryData.platformBrightness == Brightness.light
           //         ? (Colors.black)

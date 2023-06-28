@@ -47,6 +47,7 @@ dependencies:
   flutter_statusbarcolor_ns: ^0.5.0
   marquee: ^2.2.3
   meta: ^1.9.1
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

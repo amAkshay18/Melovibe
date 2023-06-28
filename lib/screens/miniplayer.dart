@@ -27,7 +27,7 @@ class MiniPlayerState extends State<MiniPlayer> {
               borderRadius: BorderRadius.circular(35),
               color: Colors.grey,
             ),
-            height: 40,
+            height: 50,
             width: MediaQuery.of(context).size.width,
             child: InkWell(
               onTap: () {

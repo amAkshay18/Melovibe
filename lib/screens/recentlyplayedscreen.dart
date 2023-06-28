@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:offlinemusicplayer/functions/recentlyplayedfunctions.dart';
 import 'package:offlinemusicplayer/screens/nowplayingscreen.dart';
 import 'package:offlinemusicplayer/screens/splashscreen.dart';
-
 import '../functions/audioconverterfunctions.dart';
 import '../functions/favoritesfunctions.dart';
 

@@ -4,6 +4,7 @@ import 'package:offlinemusicplayer/database/model/song_model.dart';
 import 'package:offlinemusicplayer/functions/favoritesfunctions.dart';
 import 'package:offlinemusicplayer/screens/bottomnavigationscreen.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:shimmer/shimmer.dart';
 import '../functions/fetchfunctions.dart';
 import '../functions/recentlyplayedfunctions.dart';
 
@@ -36,9 +37,9 @@ class _ScreenSplashState extends State<ScreenSplash> {
             Color.fromARGB(255, 223, 11, 11),
             Color.fromARGB(255, 187, 116, 9),
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-          child: const Column(
+          child: Column(
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(top: 110),
                 child: SizedBox(
                   height: 150,
@@ -52,11 +53,19 @@ class _ScreenSplashState extends State<ScreenSplash> {
                   ),
                 ),
               ),
-              Text('Melovibe',
+              Shimmer.fromColors(
+                period: const Duration(milliseconds: 850),
+                baseColor:
+                    const Color.fromARGB(255, 64, 0, 255).withOpacity(0.9),
+                highlightColor: Colors.deepOrange,
+                child: const Text(
+                  'Melovibe',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 28,
-                      fontWeight: FontWeight.bold))
+                      fontWeight: FontWeight.bold),
+                ),
+              )
             ],
           ),
         ),
@@ -66,7 +75,7 @@ class _ScreenSplashState extends State<ScreenSplash> {
 
   Future<void> initializeApp() async {
     bool hasStoragePermission = false;
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 4));
     hasStoragePermission = await CheckPermission.checkAndRequestPermissions();
     if (hasStoragePermission) {
       // ============================================SongFetch===========================================

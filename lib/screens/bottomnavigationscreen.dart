@@ -1,19 +1,21 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:offlinemusicplayer/screens/homescreen.dart';
-import 'package:offlinemusicplayer/screens/allplaylistsscreen.dart';
+import 'package:offlinemusicplayer/screens/playlistsscreen.dart';
 import 'package:offlinemusicplayer/screens/searchscreen.dart';
 
 import 'miniplayer.dart';
 
+final ValueNotifier<int> _currentIndex = ValueNotifier(0);
+
 class BottomNaviScreen extends StatelessWidget {
   BottomNaviScreen({super.key});
-
-  final ValueNotifier<int> _currentIndex = ValueNotifier(0);
 
   final screen = [
     const ScreenHome(),
     const SearchScreeen(),
-    const AllPlaylistScreen()
+    const PlaylistScreen()
   ];
 
   @override
