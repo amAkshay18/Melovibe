@@ -5,8 +5,8 @@ part 'playlistmodel.g.dart';
 @HiveType(typeId: 3)
 class PlayListModel extends HiveObject {
   @HiveField(0)
-  String? playlistName;
+  String? playListName;
   @HiveField(1)
   List<AllSongModel>? playlist = [];
-  PlayListModel({required this.playlistName, this.playlist});
+  PlayListModel({required this.playListName, this.playlist});
 }

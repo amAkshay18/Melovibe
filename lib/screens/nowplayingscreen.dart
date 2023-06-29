@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:offlinemusicplayer/database/model/song_model.dart';
 import 'package:offlinemusicplayer/functions/audioconverterfunctions.dart';
 import 'package:offlinemusicplayer/functions/favoritesfunctions.dart';
+import 'package:offlinemusicplayer/screens/splashscreen.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:marquee/marquee.dart';
+import 'addtoplaylistscreen.dart';
+import 'miniplayer.dart';
 
 // ignore: must_be_immutable
 class NowPlayingScreen extends StatefulWidget {
@@ -53,7 +56,15 @@ class _NowPlayingScreenState extends State<NowPlayingScreen> {
           actions: [
             IconButton(
               color: Colors.black,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => AddToPlaylistsScreen(
+                      music: allSongs[index],
+                    ),
+                  ),
+                );
+              },
               icon: const Icon(Icons.playlist_add),
             )
           ],

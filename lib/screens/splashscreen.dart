@@ -32,11 +32,12 @@ class _ScreenSplashState extends State<ScreenSplash> {
           height: double.infinity,
           width: double.infinity,
           decoration: const BoxDecoration(
-              gradient: LinearGradient(colors: [
-            Color.fromARGB(255, 19, 4, 3),
-            Color.fromARGB(255, 223, 11, 11),
-            Color.fromARGB(255, 187, 116, 9),
-          ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+            gradient: LinearGradient(colors: [
+              Color.fromARGB(255, 19, 4, 3),
+              Color.fromARGB(255, 223, 11, 11),
+              Color.fromARGB(255, 187, 116, 9),
+            ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+          ),
           child: Column(
             children: [
               const Padding(
@@ -65,7 +66,7 @@ class _ScreenSplashState extends State<ScreenSplash> {
                       fontSize: 28,
                       fontWeight: FontWeight.bold),
                 ),
-              )
+              ),
             ],
           ),
         ),

@@ -4,18 +4,19 @@ import 'package:offlinemusicplayer/database/model/song_model.dart';
 import '../database/model/playlistmodel.dart';
 
 ValueNotifier<List<PlayListModel>> playlistnotifier = ValueNotifier([]);
-createPlaylist(String name) {
+bool createPlaylist(String name) {
   bool check = false;
   for (var element in playlistnotifier.value) {
-    if (element.playlistName == name) {
+    if (element.playListName == name) {
       check = true;
-      break;
+      return false;
     }
   }
   if (check == false) {
-    PlayListModel item = PlayListModel(playlistName: name);
+    PlayListModel item = PlayListModel(playListName: name);
     addToPlaylist(item);
   }
+  return true;
 }
 
 addToPlaylist(PlayListModel item) async {
@@ -28,7 +29,6 @@ addToPlaylist(PlayListModel item) async {
 
 Future<void> getPlaylist() async {
   final playlistDB = await Hive.openBox<PlayListModel>('playlist');
-
   playlistnotifier.value.clear();
   playlistnotifier.value.addAll(playlistDB.values);
   // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
@@ -36,40 +36,42 @@ Future<void> getPlaylist() async {
 }
 
 deletePlaylist(int index) async {
-  String? playlistName = playlistnotifier.value[index].playlistName;
+  String? playlistName = playlistnotifier.value[index].playListName;
   final playlistDB = await Hive.openBox<PlayListModel>('playlist');
   for (PlayListModel elements in playlistDB.values) {
-    if (elements.playlistName == playlistName) {
+    if (elements.playListName == playlistName) {
       var key = elements.key;
       playlistDB.delete(key);
     }
   }
   playlistnotifier.value.removeAt(index);
+
   // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
   playlistnotifier.notifyListeners();
 }
 
 Future<void> renamePlaylist(int index, String newname) async {
-  String? playListname = playlistnotifier.value[index].playlistName;
+  String? playListname = playlistnotifier.value[index].playListName;
   final playListDB = await Hive.openBox<PlayListModel>('PlayList');
   for (PlayListModel element in playListDB.values) {
-    if (element.playlistName == playListname) {
+    if (element.playListName == playListname) {
       var key = element.key;
-      element.playlistName = newname;
+      element.playListName = newname;
       playListDB.put(key, element);
     }
   }
-  playlistnotifier.value[index].playlistName = newname;
+  playlistnotifier.value[index].playListName = newname;
   // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
   playlistnotifier.notifyListeners();
 }
 
 addSongToPlaylist(AllSongModel song, String name, BuildContext context) {
+  // ignore: unused_local_variable
   int indx = 0;
   bool check = false;
   List<AllSongModel> forThisPlayList = [];
   for (var element in playlistnotifier.value) {
-    if (element.playlistName == name) {
+    if (element.playListName == name) {
       forThisPlayList = element.playlist ?? forThisPlayList;
       break;
     }
@@ -84,7 +86,7 @@ addSongToPlaylist(AllSongModel song, String name, BuildContext context) {
   if (check == false) {
     forThisPlayList.add(song);
     PlayListModel thisPlaylist =
-        PlayListModel(playlistName: name, playlist: forThisPlayList);
+        PlayListModel(playListName: name, playlist: forThisPlayList);
     playlistSongAddDB(thisPlaylist);
   } else {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -99,17 +101,19 @@ playlistSongAddDB(PlayListModel playListItem) async {
   final playListDB = await Hive.openBox<PlayListModel>('PlayList');
   int index = 0;
   for (var element in playListDB.values) {
-    if (element.playlistName == playListItem.playlistName) {
+    if (element.playListName == playListItem.playListName) {
       break;
     }
     index++;
   }
   playListDB.putAt(index, playListItem);
   getPlaylist();
+  // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
   playlistnotifier.notifyListeners();
 }
 
 playlistRemoveSong(AllSongModel song, PlayListModel playlist) async {
+  // ignore: unused_local_variable
   final playlistDB = await Hive.openBox<PlayListModel>('PlayList');
   List<AllSongModel> songs = [];
   songs = playlist.playlist ?? songs;
@@ -122,6 +126,6 @@ playlistRemoveSong(AllSongModel song, PlayListModel playlist) async {
   }
   songs.removeAt(indx);
   PlayListModel thisPlayList =
-      PlayListModel(playlistName: playlist.playlistName, playlist: songs);
+      PlayListModel(playListName: playlist.playListName, playlist: songs);
   playlistSongAddDB(thisPlayList);
 }

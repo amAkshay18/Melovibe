@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:offlinemusicplayer/screens/splashscreen.dart';
-
+import 'package:on_audio_query/on_audio_query.dart';
 import 'nowplayingscreen.dart';
 
 class SearchScreeen extends StatelessWidget {
@@ -50,12 +50,18 @@ class SearchScreeen extends StatelessWidget {
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(16),
-                              child: Image.asset(
-                                'assets/images/dummySong.jpg',
-                                width: 70,
-                                height: 70,
-                                fit: BoxFit.cover,
-                              ),
+                              child: QueryArtworkWidget(
+                                  artworkClipBehavior: Clip.none,
+                                  artworkHeight: 70,
+                                  artworkWidth: 70,
+                                  nullArtworkWidget: Image.asset(
+                                    'assets/images/dummySong.jpg',
+                                    fit: BoxFit.cover,
+                                    width: 70,
+                                    height: 70,
+                                  ),
+                                  id: allSongs[index].id!,
+                                  type: ArtworkType.AUDIO),
                             ),
                             const SizedBox(
                               width: 8,
@@ -103,27 +109,11 @@ class SearchScreeen extends StatelessWidget {
                                             value: 'playlist',
                                             child: Text('Add to playlist'),
                                           ),
-                                          // const PopupMenuItem<String>(
-                                          //   value: 'share',
-                                          //   child: Text('Share'),
-                                          // ),
-                                          // const PopupMenuItem<String>(
-                                          //   value: 'rename',
-                                          //   child: Text('Rename'),
-                                          // ),
-                                          // const PopupMenuItem<String>(
-                                          //   value: 'delete',
-                                          //   child: Text('Delete'),
-                                          // ),
                                         ];
                                       },
                                       onSelected: (String value) {
                                         if (value == 'favorites') {
                                         } else if (value == 'playlist') {}
-                                        //else if (value == 'share') {
-                                        // } else if (value == 'rename') {}
-                                        //else if (value == 'delete')
-                                        // {}
                                       },
                                     ),
                                   ),

@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:offlinemusicplayer/screens/homescreen.dart';
 import 'package:offlinemusicplayer/screens/playlistsscreen.dart';
 import 'package:offlinemusicplayer/screens/searchscreen.dart';
-
 import 'miniplayer.dart';
 
 final ValueNotifier<int> _currentIndex = ValueNotifier(0);

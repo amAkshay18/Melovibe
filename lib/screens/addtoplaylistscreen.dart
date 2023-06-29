@@ -4,7 +4,7 @@ import '../functions/playlistfunctions.dart';
 
 class AddToPlaylistsScreen extends StatefulWidget {
   final AllSongModel music;
-  AddToPlaylistsScreen({Key? key, required this.music}) : super(key: key);
+  const AddToPlaylistsScreen({Key? key, required this.music}) : super(key: key);
 
   @override
   State<AddToPlaylistsScreen> createState() => _AddToPlaylistsScreenState();
@@ -38,52 +38,6 @@ class _AddToPlaylistsScreenState extends State<AddToPlaylistsScreen> {
             'Add To Playlist',
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           ),
-          // actions: [
-          //   IconButton(
-          //     color: Colors.black,
-          //     onPressed: () {
-          //       showDialog(
-          //         context: context,
-          //         builder: (context) {
-          //           return Form(
-          //             child: AlertDialog(
-          //               title: const Text('Create Playlist'),
-          //               content: TextFormField(
-          //                 controller: _playlistNameController,
-          //               ),
-          //               actions: [
-          //                 TextButton(
-          //                   onPressed: () {
-          //                     Navigator.pop(context);
-          //                   },
-          //                   child: const Text(
-          //                     'Cancel',
-          //                     style: TextStyle(color: Colors.black),
-          //                   ),
-          //                 ),
-          //                 TextButton(
-          //                   onPressed: () {
-          //                     String playlistname =
-          //                         _playlistNameController.text;
-          //                     if (playlistname.isNotEmpty) {
-          //                       createPlaylist(_playlistNameController.text);
-          //                       Navigator.pop(context);
-          //                     }
-          //                   },
-          //                   child: const Text(
-          //                     'Add',
-          //                     style: TextStyle(color: Colors.black),
-          //                   ),
-          //                 ),
-          //               ],
-          //             ),
-          //           );
-          //         },
-          //       );
-          //     },
-          //     icon: const Icon(Icons.add),
-          //   ),
-          // ],
         ),
         body: ValueListenableBuilder(
           valueListenable: playlistnotifier,
@@ -93,61 +47,58 @@ class _AddToPlaylistsScreenState extends State<AddToPlaylistsScreen> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        width: double.infinity,
-                        height: 60,
-                        child: TextButton(
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return Form(
-                                  child: AlertDialog(
-                                    title: const Text('Create Playlist'),
-                                    content: TextFormField(
-                                      controller: _playlistNameController,
-                                    ),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: const Text(
-                                          'cancel',
-                                          style: TextStyle(color: Colors.black),
-                                        ),
-                                      ),
-                                      TextButton(
-                                        onPressed: () {
-                                          String playlistname =
-                                              _playlistNameController.text;
-                                          if (playlistname.isNotEmpty) {
-                                            createPlaylist(
-                                                _playlistNameController.text);
-                                            Navigator.pop(context);
-                                          }
-                                        },
-                                        child: const Text(
-                                          'add',
-                                          style: TextStyle(color: Colors.black),
-                                        ),
-                                      ),
-                                    ],
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      width: double.infinity,
+                      height: 60,
+                      child: TextButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return Form(
+                                child: AlertDialog(
+                                  title: const Text('Create Playlist'),
+                                  content: TextFormField(
+                                    controller: _playlistNameController,
                                   ),
-                                );
-                              },
-                            );
-                          },
-                          child: const Text(
-                            'Create Playlist',
-                            style: TextStyle(color: Colors.black),
-                          ),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text(
+                                        'cancel',
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        String playlistname =
+                                            _playlistNameController.text;
+                                        if (playlistname.isNotEmpty) {
+                                          createPlaylist(
+                                              _playlistNameController.text);
+                                          Navigator.pop(context);
+                                        }
+                                      },
+                                      child: const Text(
+                                        'add',
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        child: const Text(
+                          'Create Playlist',
+                          style: TextStyle(color: Colors.black),
                         ),
                       ),
                     ),
@@ -163,18 +114,8 @@ class _AddToPlaylistsScreenState extends State<AddToPlaylistsScreen> {
                               Expanded(
                                 child: InkWell(
                                   onTap: () {
-                                    // Navigator.push(
-                                    //   context,
-                                    //   MaterialPageRoute(
-                                    //     builder: (context) =>
-                                    //         SinglePlayListScreen(
-                                    //             playlistname:
-                                    //                 value[index].playlistName ??
-                                    //                     'name'),
-                                    //   ),
-                                    // );
                                     addSongToPlaylist(widget.music,
-                                        value[index].playlistName!, context);
+                                        value[index].playListName!, context);
                                     Navigator.of(context).pop();
                                   },
                                   child: Container(
@@ -187,7 +128,7 @@ class _AddToPlaylistsScreenState extends State<AddToPlaylistsScreen> {
                                       title: SizedBox(
                                         height: 20,
                                         child: Text(
-                                          value[index].playlistName ?? 'name',
+                                          value[index].playListName ?? 'name',
                                           style: const TextStyle(
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -202,7 +143,7 @@ class _AddToPlaylistsScreenState extends State<AddToPlaylistsScreen> {
                           ),
                         );
                       },
-                      itemCount: value.length)
+                      itemCount: value.length),
                 ],
               ),
             );
@@ -211,40 +152,4 @@ class _AddToPlaylistsScreenState extends State<AddToPlaylistsScreen> {
       ),
     );
   }
-
-  // void editPlaylist(int index) {
-  //   TextEditingController editplaylistcontroller = TextEditingController();
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         title: const Text('Edit Playlist'),
-  //         content: TextField(
-  //           controller: _editplaylistcontroller,
-  //           decoration: const InputDecoration(labelText: 'Playlist Name'),
-  //         ),
-  //         actions: <Widget>[
-  //           TextButton(
-  //             onPressed: () {
-  //               setState(() {
-  //                 String newName = _editplaylistcontroller.text;
-
-  //                 if (newName.isNotEmpty) {
-  //                   playlistRename(index, newName);
-  //                 }
-  //                 Navigator.of(context).pop();
-  //               });
-  //             },
-  //             child: const Text('Save'),
-  //           ),
-  //           TextButton(
-  //               onPressed: () {
-  //                 Navigator.of(context).pop();
-  //               },
-  //               child: const Text('Cancel'))
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
 }

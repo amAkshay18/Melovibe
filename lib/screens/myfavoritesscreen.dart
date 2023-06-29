@@ -63,7 +63,7 @@ class _MyFavoritesScreenState extends State<MyFavoritesScreen> {
                                     ),
                                   ),
                                   const SizedBox(
-                                    width: 14,
+                                    width: 8,
                                   ),
                                   Expanded(
                                     child: InkWell(

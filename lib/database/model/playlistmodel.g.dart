@@ -17,7 +17,7 @@ class PlayListModelAdapter extends TypeAdapter<PlayListModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return PlayListModel(
-      playlistName: fields[0] as String?,
+      playListName: fields[0] as String?,
       playlist: (fields[1] as List?)?.cast<AllSongModel>(),
     );
   }
@@ -27,7 +27,7 @@ class PlayListModelAdapter extends TypeAdapter<PlayListModel> {
     writer
       ..writeByte(2)
       ..writeByte(0)
-      ..write(obj.playlistName)
+      ..write(obj.playListName)
       ..writeByte(1)
       ..write(obj.playlist);
   }

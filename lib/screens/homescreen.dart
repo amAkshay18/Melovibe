@@ -11,6 +11,7 @@ import 'package:offlinemusicplayer/screens/recentlyplayedscreen.dart';
 import 'package:offlinemusicplayer/screens/settingsscreen.dart';
 import 'package:offlinemusicplayer/screens/splashscreen.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:shimmer/shimmer.dart';
 import 'myfavoritesscreen.dart';
 import 'nowplayingscreen.dart';
 
@@ -42,9 +43,23 @@ class _ScreenHomeState extends State<ScreenHome> {
               bottom: Radius.circular(16),
             ),
           ),
-          title: const Text(
-            'Good evening',
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          title: AnimatedBuilder(
+            animation: const AlwaysStoppedAnimation(0),
+            builder: (BuildContext context, Widget? child) {
+              return Shimmer.fromColors(
+                period: const Duration(seconds: 55),
+                baseColor:
+                    const Color.fromARGB(255, 64, 0, 255).withOpacity(0.9),
+                highlightColor: Colors.deepOrange,
+                child: const Text(
+                  'MeloVibe',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              );
+            },
           ),
           actions: [
             IconButton(
@@ -213,14 +228,15 @@ class _ScreenHomeState extends State<ScreenHome> {
                                   color: Colors.grey),
                               child: ListTile(
                                 title: SizedBox(
-                                    height: 20,
-                                    child: Text(
-                                      allSongs[index].name!,
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      maxLines: 1,
-                                    )),
+                                  height: 20,
+                                  child: Text(
+                                    allSongs[index].name!,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    maxLines: 1,
+                                  ),
+                                ),
                                 subtitle: SizedBox(
                                   height: 20,
                                   child: Text(
@@ -254,9 +270,56 @@ class _ScreenHomeState extends State<ScreenHome> {
                                   },
                                   onSelected: (String value) {
                                     if (value == 'favorites') {
-                                      fav.value.contains(allSongs[index])
-                                          ? removeFromFav(allSongs[index].id!)
-                                          : addToFav(allSongs[index].id!);
+                                      if (fav.value.contains(allSongs[index])) {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: const Text('Confirmation'),
+                                              content: const Text(
+                                                  'Are you sure you want to remove the song from favorites?'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: const Text('Cancel'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () {
+                                                    removeFromFav(
+                                                        allSongs[index].id!);
+                                                    Navigator.of(context).pop();
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      const SnackBar(
+                                                        content: Text(
+                                                          'Song is removed from favorites successfully',
+                                                        ),
+                                                        backgroundColor:
+                                                            Colors.red,
+                                                      ),
+                                                    );
+                                                  },
+                                                  child: const Text('Remove'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      } else {
+                                        addToFav(allSongs[index].id!);
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                            content: Text(
+                                              'Song added to favorites successfully',
+                                            ),
+                                            backgroundColor: Colors.green,
+                                          ),
+                                        );
+                                      }
                                     } else if (value == 'playlist') {
                                       Navigator.of(context).push(
                                         MaterialPageRoute(

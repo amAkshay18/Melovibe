@@ -15,12 +15,12 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
     setState(() {
       getPlaylist();
     });
-    // TODO: implement initState
     super.initState();
   }
 
   // ignore: prefer_final_fields
   TextEditingController _playlistEditingController = TextEditingController();
+  // ignore: unused_element
   _showAddPlaylist() {
     showDialog(
       context: context,
@@ -29,27 +29,34 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
           title: const Text('Add Playlist'),
           content: TextFormField(
             controller: _playlistEditingController,
-            decoration: const InputDecoration(labelText: 'Playlist Name'),
+            decoration: const InputDecoration(labelText: 'playlist name'),
           ),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 String addPlaylistName = _playlistEditingController.text;
                 if (addPlaylistName.isNotEmpty) {
-                  createPlaylist(
+                  bool iscreated = createPlaylist(
                     _playlistEditingController.text,
                   );
+                  if (!iscreated) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('name already exist'),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  }
                 }
-
                 Navigator.of(context).pop();
               },
-              child: const Text('Create'),
+              child: const Text('create'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Cancel'),
+              child: const Text('cancel'),
             ),
           ],
         );
@@ -64,12 +71,42 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Edit Playlist'),
+          title: const Text(
+            'Rename Playlist',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           content: TextField(
             controller: _editplaylistcontroller,
-            decoration: const InputDecoration(labelText: 'Playlist Name'),
+            decoration: const InputDecoration(
+              labelText: 'Playlist Name',
+              labelStyle: TextStyle(color: Colors.black),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black, width: 2.0),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey, width: 1.0),
+              ),
+            ),
+            style: const TextStyle(fontSize: 16),
           ),
           actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                'Cancel',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             TextButton(
               onPressed: () {
                 String newName = _editplaylistcontroller.text;
@@ -79,13 +116,15 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                 }
                 Navigator.of(context).pop();
               },
-              child: const Text('Save'),
+              child: const Text(
+                'Rename',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
-            TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Cancel'))
           ],
         );
       },
@@ -97,23 +136,43 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Are you Sure you want to delete this playlist'),
+          title: const Text(
+            'Are you sure you want to delete this playlist?',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                'Cancel',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             TextButton(
               onPressed: () {
                 setState(() {
                   deletePlaylist(index);
                 });
-
                 Navigator.of(context).pop();
               },
-              child: const Text('Delete'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
+              child: const Text(
+                'Delete',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             )
           ],
         );
@@ -141,99 +200,108 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
               style:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             ),
-            // leading: IconButton(
-            //   onPressed: () {
-            //     Navigator.pop(context);
-            //   },
-            //   icon: const Icon(
-            //     Icons.arrow_back,
-            //     size: 28,
-            //     color: Colors.black,
-            //   ),
-            // ),
+            actions: [
+              IconButton(
+                onPressed: () {
+                  _showAddPlaylist();
+                },
+                icon: const Icon(Icons.add),
+                color: Colors.black,
+                iconSize: 28,
+              )
+            ],
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ValueListenableBuilder(
-              valueListenable: playlistnotifier,
-              builder: (context, value, child) {
-                return ListView.separated(
-                    itemBuilder: (context, index) {
-                      return Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors.grey),
-                        height: 70,
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SinglePlayListScreen(
-                                    playlistname: value[index].playlistName!,
-                                    listIndex: playlistnotifier.value[index],
-                                    idx: index),
-                              ),
-                            );
-                          },
-                          child: ListTile(
-                            // leading: const Padding(
-                            //   padding: EdgeInsets.only(top: 9.0),
-                            //   child: Icon(
-                            //     Icons.playlist_play_rounded,
-                            //     size: 45,
-                            //   ),
-                            // ),
-                            title: Padding(
-                              padding: const EdgeInsets.only(top: 18.0),
-                              child: Text(
-                                playlistnotifier.value[index].playlistName ??
-                                    "playlist name",
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16.0,
-                                ),
-                              ),
-                            ),
-                            trailing: Padding(
-                              padding: const EdgeInsets.only(top: 18.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  IconButton(
-                                    onPressed: () {
-                                      _editPlaylist(index);
+          body: ValueListenableBuilder(
+            valueListenable: playlistnotifier,
+            builder: (context, value, child) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: playlistnotifier.value.isEmpty
+                          ? const Center(
+                              child: Text('No playlists available'),
+                            )
+                          : ListView.separated(
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: Colors.grey),
+                                  height: 70,
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              SinglePlayListScreen(
+                                                  playlistname: value[index]
+                                                      .playListName!,
+                                                  listIndex: playlistnotifier
+                                                      .value[index],
+                                                  idx: index),
+                                        ),
+                                      );
                                     },
-                                    icon: const Icon(Icons.edit),
+                                    child: ListTile(
+                                      title: Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 18.0),
+                                        child: Text(
+                                          playlistnotifier
+                                                  .value[index].playListName ??
+                                              "playlist name",
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16.0,
+                                          ),
+                                        ),
+                                      ),
+                                      trailing: Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 18.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            IconButton(
+                                              onPressed: () {
+                                                _editPlaylist(index);
+                                              },
+                                              icon: const Icon(Icons.edit),
+                                            ),
+                                            IconButton(
+                                              onPressed: () {
+                                                deletePlaylist1(context, index);
+                                              },
+                                              icon: const Icon(Icons.delete),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                  IconButton(
-                                    onPressed: () {
-                                      deletePlaylist1(context, index);
-                                    },
-                                    icon: const Icon(Icons.delete),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                    separatorBuilder: (context, index) {
-                      return const SizedBox(height: 16.0);
-                    },
-                    itemCount: playlistnotifier.value.length);
-              },
-            ),
-          ),
-          floatingActionButton: FloatingActionButton(
-            backgroundColor: Colors.grey,
-            child: const Icon(Icons.add, color: Colors.black),
-            onPressed: () {
-              _showAddPlaylist();
+                                );
+                              },
+                              separatorBuilder: (context, index) {
+                                return const SizedBox(height: 8.0);
+                              },
+                              itemCount: playlistnotifier.value.length),
+                    )
+                  ],
+                ),
+              );
             },
           ),
+          // floatingActionButton: FloatingActionButton(
+          //   backgroundColor: Colors.grey,
+          //   child: const Icon(Icons.add, color: Colors.black),
+          //   onPressed: () {
+          //     _showAddPlaylist();
+          //   },
+          // ),
         );
       },
     );
