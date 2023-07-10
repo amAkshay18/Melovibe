@@ -101,6 +101,7 @@ class _MelofinderScreenState extends State<MelofinderScreen> {
             )
           ],
         ),
+        backgroundColor: const Color.fromARGB(255, 236, 232, 220),
       ),
     );
   }

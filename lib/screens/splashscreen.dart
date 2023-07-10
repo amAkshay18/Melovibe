@@ -76,7 +76,7 @@ class _ScreenSplashState extends State<ScreenSplash> {
 
   Future<void> initializeApp() async {
     bool hasStoragePermission = false;
-    await Future.delayed(const Duration(seconds: 4));
+    await Future.delayed(const Duration(seconds: 1));
     hasStoragePermission = await CheckPermission.checkAndRequestPermissions();
     if (hasStoragePermission) {
       // ============================================SongFetch===========================================

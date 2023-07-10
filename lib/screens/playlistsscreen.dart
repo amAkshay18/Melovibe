@@ -18,168 +18,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
     super.initState();
   }
 
-  // ignore: prefer_final_fields
-  TextEditingController _playlistEditingController = TextEditingController();
-  // ignore: unused_element
-  _showAddPlaylist() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Add Playlist'),
-          content: TextFormField(
-            controller: _playlistEditingController,
-            decoration: const InputDecoration(labelText: 'playlist name'),
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                String addPlaylistName = _playlistEditingController.text;
-                if (addPlaylistName.isNotEmpty) {
-                  bool iscreated = createPlaylist(
-                    _playlistEditingController.text,
-                  );
-                  if (!iscreated) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('name already exist'),
-                        backgroundColor: Colors.red,
-                      ),
-                    );
-                  }
-                }
-                Navigator.of(context).pop();
-              },
-              child: const Text('create'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('cancel'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  void _editPlaylist(int index) {
-    // ignore: no_leading_underscores_for_local_identifiers
-    TextEditingController _editplaylistcontroller = TextEditingController();
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text(
-            'Rename Playlist',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          content: TextField(
-            controller: _editplaylistcontroller,
-            decoration: const InputDecoration(
-              labelText: 'Playlist Name',
-              labelStyle: TextStyle(color: Colors.black),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black, width: 2.0),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey, width: 1.0),
-              ),
-            ),
-            style: const TextStyle(fontSize: 16),
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text(
-                'Cancel',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                String newName = _editplaylistcontroller.text;
-
-                if (newName.isNotEmpty) {
-                  renamePlaylist(index, newName);
-                }
-                Navigator.of(context).pop();
-              },
-              child: const Text(
-                'Rename',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  void deletePlaylist1(BuildContext context, int index) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text(
-            'Are you sure you want to delete this playlist?',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text(
-                'Cancel',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  deletePlaylist(index);
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text(
-                'Delete',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            )
-          ],
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     getPlaylist();
@@ -203,7 +41,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
             actions: [
               IconButton(
                 onPressed: () {
-                  _showAddPlaylist();
+                  _showAddToPlaylist();
                 },
                 icon: const Icon(Icons.add),
                 color: Colors.black,
@@ -267,12 +105,14 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             IconButton(
+                                              color: Colors.black,
                                               onPressed: () {
                                                 _editPlaylist(index);
                                               },
                                               icon: const Icon(Icons.edit),
                                             ),
                                             IconButton(
+                                              color: Colors.black,
                                               onPressed: () {
                                                 deletePlaylist1(context, index);
                                               },
@@ -289,19 +129,228 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                                 return const SizedBox(height: 8.0);
                               },
                               itemCount: playlistnotifier.value.length),
-                    )
+                    ),
                   ],
                 ),
               );
             },
           ),
-          // floatingActionButton: FloatingActionButton(
-          //   backgroundColor: Colors.grey,
-          //   child: const Icon(Icons.add, color: Colors.black),
-          //   onPressed: () {
-          //     _showAddPlaylist();
-          //   },
-          // ),
+          backgroundColor: const Color.fromARGB(255, 236, 232, 220),
+        );
+      },
+    );
+  }
+
+  // ignore: prefer_final_fields.
+  TextEditingController playlistEditingController = TextEditingController();
+
+  // ignore: unused_element
+  _showAddToPlaylist() {
+    playlistEditingController.clear();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            'Create Playlist',
+            style: TextStyle(
+                color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          content: TextFormField(
+            controller: playlistEditingController,
+            decoration: const InputDecoration(
+              labelText: 'playlist name',
+              labelStyle: TextStyle(color: Colors.black),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black, width: 2),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey, width: 1),
+              ),
+            ),
+            style: const TextStyle(fontSize: 16),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                'Cancel',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                String addPlaylistName = playlistEditingController.text;
+                if (addPlaylistName.isNotEmpty) {
+                  bool iscreated = createPlaylist(
+                    playlistEditingController.text,
+                  );
+                  if (!iscreated) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('name already exist'),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  }
+                }
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                'Create',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editPlaylist(int index) {
+    // ignore: no_leading_underscores_for_local_identifiers
+    TextEditingController _editplaylistcontroller = TextEditingController();
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            'Rename Playlist',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          content: TextField(
+            controller: _editplaylistcontroller,
+            decoration: const InputDecoration(
+              labelText: 'Playlist Name',
+              labelStyle: TextStyle(color: Colors.black),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black, width: 2.0),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey, width: 1.0),
+              ),
+            ),
+            style: const TextStyle(fontSize: 16),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                'Cancel',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                String newName = _editplaylistcontroller.text;
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: const Text(
+                      'Playlist renamed successfully',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    backgroundColor: Colors.green,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                );
+
+                if (newName.isNotEmpty) {
+                  renamePlaylist(index, newName);
+                }
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                'Rename',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void deletePlaylist1(BuildContext context, int index) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            'Are you sure you want to delete this playlist?',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                'Cancel',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  deletePlaylist(index);
+                });
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: const Text(
+                      'Playlist deleted successfully',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    backgroundColor: Colors.red,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                );
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                'Delete',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            )
+          ],
         );
       },
     );

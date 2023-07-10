@@ -45,7 +45,6 @@ deletePlaylist(int index) async {
     }
   }
   playlistnotifier.value.removeAt(index);
-
   // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
   playlistnotifier.notifyListeners();
 }
@@ -91,7 +90,11 @@ addSongToPlaylist(AllSongModel song, String name, BuildContext context) {
   } else {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text("The song is already exist"),
+        content: Text(
+          "The song is already exist",
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.red,
       ),
     );
   }

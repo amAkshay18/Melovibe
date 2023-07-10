@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:offlinemusicplayer/screens/splashscreen.dart';
+import 'miniplayer.dart';
 import 'nowplayingscreen.dart';
 
 class MostlyPlayedScreen extends StatelessWidget {
@@ -131,6 +132,8 @@ class MostlyPlayedScreen extends StatelessWidget {
             ),
           ],
         ),
+        bottomSheet: const MiniPlayer(),
+        backgroundColor: const Color.fromARGB(255, 236, 232, 220),
       ),
     );
   }

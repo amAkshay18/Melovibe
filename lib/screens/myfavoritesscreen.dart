@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:offlinemusicplayer/functions/audioconverterfunctions.dart';
 import 'package:offlinemusicplayer/functions/favoritesfunctions.dart';
+import 'package:offlinemusicplayer/screens/miniplayer.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 import 'nowplayingscreen.dart';
 
 class MyFavoritesScreen extends StatefulWidget {
@@ -55,12 +57,18 @@ class _MyFavoritesScreenState extends State<MyFavoritesScreen> {
                                 children: [
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(16),
-                                    child: Image.asset(
-                                      'assets/images/dummySong.jpg',
-                                      width: 70,
-                                      height: 70,
-                                      fit: BoxFit.cover,
-                                    ),
+                                    child: QueryArtworkWidget(
+                                        artworkClipBehavior: Clip.none,
+                                        artworkHeight: 70,
+                                        artworkWidth: 70,
+                                        nullArtworkWidget: Image.asset(
+                                          'assets/images/dummySong.jpg',
+                                          fit: BoxFit.cover,
+                                          width: 70,
+                                          height: 70,
+                                        ),
+                                        id: fav.value[index].id!,
+                                        type: ArtworkType.AUDIO),
                                   ),
                                   const SizedBox(
                                     width: 8,
@@ -98,48 +106,99 @@ class _MyFavoritesScreenState extends State<MyFavoritesScreen> {
                                               style: const TextStyle(
                                                   fontWeight: FontWeight.bold),
                                               maxLines: 1),
-                                          trailing: PopupMenuButton<String>(
-                                            icon: const Icon(
-                                              Icons.favorite,
+                                          trailing: IconButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                if (fav.value.contains(
+                                                    fav.value[index])) {
+                                                  showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (BuildContext context) {
+                                                      return AlertDialog(
+                                                        title: const Text(
+                                                            'Confirmation'),
+                                                        content: const Text(
+                                                            'Are you sure you want to remove the song from favorites?'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () {
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop();
+                                                            },
+                                                            child: const Text(
+                                                              'Cancel',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black),
+                                                            ),
+                                                          ),
+                                                          TextButton(
+                                                            onPressed: () {
+                                                              removeFromFav(fav
+                                                                  .value[index]
+                                                                  .id!);
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop();
+                                                              ScaffoldMessenger
+                                                                      .of(context)
+                                                                  .showSnackBar(
+                                                                const SnackBar(
+                                                                  content: Text(
+                                                                      'Song is removed from favorites successfully'),
+                                                                  backgroundColor:
+                                                                      Colors
+                                                                          .red,
+                                                                ),
+                                                              );
+                                                            },
+                                                            child: const Text(
+                                                              'Remove',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                } else {
+                                                  addToFav(
+                                                      fav.value[index].id!);
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    const SnackBar(
+                                                      content: Text(
+                                                          'Song added to favorites successfully'),
+                                                      backgroundColor:
+                                                          Colors.green,
+                                                    ),
+                                                  );
+                                                }
+                                              });
+                                            },
+                                            icon: Icon(
+                                              () {
+                                                if (fav.value.contains(
+                                                    fav.value[index])) {
+                                                  return Icons.favorite;
+                                                } else {
+                                                  return Icons.favorite_border;
+                                                }
+                                              }(),
+                                              color: () {
+                                                if (fav.value.contains(
+                                                    fav.value[index])) {
+                                                  return Colors.red;
+                                                } else {
+                                                  return Colors.black;
+                                                }
+                                              }(),
                                               size: 20,
-                                              color: Colors.black,
                                             ),
-                                            itemBuilder:
-                                                (BuildContext context) {
-                                              return <PopupMenuEntry<String>>[
-                                                const PopupMenuItem<String>(
-                                                  value: 'favorites',
-                                                  child: Text(
-                                                      'Remove from favorites'),
-                                                ),
-                                                // const PopupMenuItem<String>(
-                                                //   value: 'playlist',
-                                                //   child: Text('Add to playlist'),
-                                                // ),
-                                                // const PopupMenuItem<String>(
-                                                //   value: 'share',
-                                                //   child: Text('Share'),
-                                                // ),
-                                                // const PopupMenuItem<String>(
-                                                //   value: 'rename',
-                                                //   child: Text('Rename'),
-                                                // ),
-                                                // const PopupMenuItem<String>(
-                                                //   value: 'delete',
-                                                //   child: Text('Delete'),
-                                                // ),
-                                              ];
-                                            },
-                                            onSelected: (String value) {
-                                              if (value == 'favorites') {
-                                                removeFromFav(
-                                                    fav.value[index].id!);
-                                              } else if (value == 'playlist') {}
-                                              //else if (value == 'share') {
-                                              // } else if (value == 'rename') {}
-                                              //else if (value == 'delete')
-                                              // {}
-                                            },
                                           ),
                                         ),
                                       ),
@@ -155,6 +214,8 @@ class _MyFavoritesScreenState extends State<MyFavoritesScreen> {
             );
           },
         ),
+        bottomSheet: const MiniPlayer(),
+        backgroundColor: const Color.fromARGB(255, 236, 232, 220),
       ),
     );
   }

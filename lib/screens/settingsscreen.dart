@@ -126,6 +126,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ],
         ),
+        backgroundColor: const Color.fromARGB(255, 236, 232, 220),
       ),
     );
   }

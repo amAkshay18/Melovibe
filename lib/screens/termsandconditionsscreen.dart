@@ -214,6 +214,7 @@ class TermsAndConditionsScreen extends StatelessWidget {
           ],
         ),
       ),
+      backgroundColor: const Color.fromARGB(255, 236, 232, 220),
     );
   }
 }

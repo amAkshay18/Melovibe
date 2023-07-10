@@ -244,10 +244,6 @@ class _NowPlayingScreenState extends State<NowPlayingScreen> {
                           },
                           icon: const Icon(Icons.speed),
                         ),
-                        // IconButton(
-                        //   onPressed: () {},
-                        //   icon: const Icon(Icons.playlist_add),
-                        // ),
                         IconButton(
                           onPressed: () {
                             setState(
@@ -429,6 +425,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen> {
             );
           },
         ),
+        backgroundColor: const Color.fromARGB(255, 236, 232, 220),
       ),
     );
   }
