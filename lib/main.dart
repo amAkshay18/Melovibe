@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:offlinemusicplayer/database/model/fav_model.dart';
-import 'package:offlinemusicplayer/database/model/playlistmodel.dart';
-
 import 'package:offlinemusicplayer/database/model/song_model.dart';
-import 'package:offlinemusicplayer/screens/splashscreen.dart';
 // import 'package:flutter/services.dart';
 import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
+import 'package:offlinemusicplayer/screens/splash_screen.dart';
+import 'database/model/favorite_model.dart';
+import 'database/model/playlist_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,8 +13,8 @@ void main() async {
   if (!Hive.isAdapterRegistered(AllSongModelAdapter().typeId)) {
     Hive.registerAdapter(AllSongModelAdapter());
   }
-  if (!Hive.isAdapterRegistered(FavourModelAdapter().typeId)) {
-    Hive.registerAdapter(FavourModelAdapter());
+  if (!Hive.isAdapterRegistered(FavoriteModelAdapter().typeId)) {
+    Hive.registerAdapter(FavoriteModelAdapter());
   }
   if (!Hive.isAdapterRegistered(PlayListModelAdapter().typeId)) {
     Hive.registerAdapter(PlayListModelAdapter());
