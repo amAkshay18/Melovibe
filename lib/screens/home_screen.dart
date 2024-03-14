@@ -457,33 +457,3 @@ class _ScreenHomeState extends State<ScreenHome> {
     );
   }
 }
-
-// void _shareSong(BuildContext context, AllSongModel song) async {
-//   // Get the file path from the uri field of AllSongModel (if available)
-//   String? songFilePath = song.uri;
-//   print('Song File Path: $songFilePath');
-
-//   if (songFilePath != null && songFilePath.isNotEmpty) {
-//     // Check if the file exists before sharing
-//     bool fileExists = await File(songFilePath).exists();
-//     if (fileExists) {
-//       // Convert the file path to an XFile
-//       XFile xFile = XFile(songFilePath);
-
-//       // Add optional text and subject parameters as needed
-//       await Share.shareXFiles([xFile]);
-//     } else {
-//       ScaffoldMessenger.of(context).showSnackBar(
-//         const SnackBar(
-//           content: Text('The song file does not exist.'),
-//         ),
-//       );
-//     }
-//   } else {
-//     ScaffoldMessenger.of(context).showSnackBar(
-//       const SnackBar(
-//         content: Text('Unable to share this song.'),
-//       ),
-//     );
-//   }
-// }

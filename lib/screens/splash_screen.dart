@@ -77,12 +77,14 @@ class _ScreenSplashState extends State<ScreenSplash> {
       List<SongModel> fetchSong = await audioQuery.querySongs();
       for (SongModel element in fetchSong) {
         if (element.fileExtension == 'mp3') {
-          allSongs.add(AllSongModel(
-              name: element.displayNameWOExt,
-              artist: element.artist,
-              duration: element.duration,
-              id: element.id,
-              uri: element.uri));
+          allSongs.add(
+            AllSongModel(
+                name: element.displayNameWOExt,
+                artist: element.artist,
+                duration: element.duration,
+                id: element.id,
+                uri: element.uri),
+          );
         }
       }
       // ignore: use_build_context_synchronously

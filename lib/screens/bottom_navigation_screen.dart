@@ -12,7 +12,7 @@ class BottomNaviScreen extends StatelessWidget {
   final screen = [
     const ScreenHome(),
     const SearchScreen(),
-    const PlaylistScreen()
+    const PlaylistScreen(),
   ];
 
   @override
