@@ -25,6 +25,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
+// plugins {
+//   id 'com.android.application' version '7.3.0' // Update version as needed
+//   id 'com.android.library' version '7.3.0' // Update version as needed
+//   id 'io.flutter.plugins.android.declare-property' version '2.0.1'
+// }
+
 def keystoreProperties = new Properties()
    def keystorePropertiesFile = rootProject.file('key.properties')
    if (keystorePropertiesFile.exists()) {

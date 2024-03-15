@@ -1,11 +1,11 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
-import 'package:offlinemusicplayer/screens/splash_screen.dart';
+import 'package:offlinemusicplayer/functions/audio_converter_functions.dart';
+import 'package:offlinemusicplayer/functions/recently_played_functions.dart';
+import 'package:offlinemusicplayer/screens/now_playing/nowplaying.dart';
+import 'package:offlinemusicplayer/screens/splash/splash.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import '../functions/audio_converter_functions.dart';
-import '../functions/recently_played_functions.dart';
-import 'nowplaying_screen.dart';
 
 class MiniPlayer extends StatefulWidget {
   const MiniPlayer({Key? key}) : super(key: key);

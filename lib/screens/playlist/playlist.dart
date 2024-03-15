@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:offlinemusicplayer/screens/playlist/single_playlist_screen.dart';
+import 'package:offlinemusicplayer/screens/playlist/single_playlist.dart';
 import '../../functions/playlist_functions.dart';
 
 class PlaylistScreen extends StatefulWidget {

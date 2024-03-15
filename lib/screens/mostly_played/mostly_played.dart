@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:offlinemusicplayer/screens/playlist/add_to_playlists_screen.dart';
-import 'package:offlinemusicplayer/screens/splash_screen.dart';
+import 'package:offlinemusicplayer/functions/audio_converter_functions.dart';
+import 'package:offlinemusicplayer/functions/favorites_functions.dart';
+import 'package:offlinemusicplayer/functions/mostly_played_functions.dart';
+import 'package:offlinemusicplayer/screens/nowplaying.dart';
+import 'package:offlinemusicplayer/screens/playlist/add_to_playlist.dart';
+import 'package:offlinemusicplayer/screens/splash/splash.dart';
+import 'package:offlinemusicplayer/shared/widgets/mini_player.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import '../functions/audio_converter_functions.dart';
-import '../functions/favorites_functions.dart';
-import '../functions/mostly_played_functions.dart';
-import 'mini_player.dart';
-import 'nowplaying_screen.dart';
 
 class MostlyPlayedScreen extends StatelessWidget {
   const MostlyPlayedScreen({super.key});

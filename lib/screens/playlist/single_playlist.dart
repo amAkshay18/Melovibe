@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:offlinemusicplayer/screens/splash_screen.dart';
+import 'package:offlinemusicplayer/screens/now_playing/nowplaying.dart';
+import 'package:offlinemusicplayer/screens/splash/splash.dart';
+import 'package:offlinemusicplayer/shared/widgets/mini_player.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import '../../database/model/playlist_model.dart';
 import '../../functions/audio_converter_functions.dart';
 import '../../functions/favorites_functions.dart';
 import '../../functions/playlist_functions.dart';
-import '../mini_player.dart';
-import '../nowplaying_screen.dart';
 
 // ignore: must_be_immutable
 class SinglePlayListScreen extends StatelessWidget {

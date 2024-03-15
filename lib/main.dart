@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:offlinemusicplayer/database/model/song_model.dart';
-// import 'package:flutter/services.dart';
 import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
-import 'package:offlinemusicplayer/screens/splash_screen.dart';
+import 'package:offlinemusicplayer/screens/splash/splash.dart';
 import 'database/model/favorite_model.dart';
 import 'database/model/playlist_model.dart';
 

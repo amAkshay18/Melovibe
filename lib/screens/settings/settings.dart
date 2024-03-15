@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:offlinemusicplayer/screens/settings/privacy_policy_screen.dart';
-import 'package:offlinemusicplayer/screens/settings/terms_and_conditions_screen.dart';
-import 'about_us_screen.dart';
+import 'package:offlinemusicplayer/screens/settings/about_us.dart';
+import 'package:offlinemusicplayer/screens/settings/privacy_policy.dart';
+import 'package:offlinemusicplayer/screens/settings/terms_and_conditions.dart';
 import 'package:share_plus/share_plus.dart'; // Import the share_plus package
 
 class SettingsScreen extends StatefulWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:offlinemusicplayer/database/model/song_model.dart';
+import 'package:offlinemusicplayer/screens/splash/splash.dart';
 import '../database/model/favorite_model.dart';
-import '../screens/splash_screen.dart';
 
 ValueNotifier<List<AllSongModel>> fav = ValueNotifier([]);
 

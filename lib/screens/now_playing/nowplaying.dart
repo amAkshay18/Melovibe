@@ -2,15 +2,15 @@ import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:offlinemusicplayer/database/model/song_model.dart';
+import 'package:offlinemusicplayer/functions/audio_converter_functions.dart';
+import 'package:offlinemusicplayer/functions/favorites_functions.dart';
 import 'package:offlinemusicplayer/functions/mostly_played_functions.dart';
 import 'package:offlinemusicplayer/functions/recently_played_functions.dart';
-import 'package:offlinemusicplayer/screens/playlist/add_to_playlists_screen.dart';
-import 'package:offlinemusicplayer/screens/splash_screen.dart';
+import 'package:offlinemusicplayer/screens/playlist/add_to_playlist.dart';
+import 'package:offlinemusicplayer/screens/splash/splash.dart';
+import 'package:offlinemusicplayer/shared/widgets/mini_player.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:marquee/marquee.dart';
-import '../functions/audio_converter_functions.dart';
-import '../functions/favorites_functions.dart';
-import 'mini_player.dart';
 
 // ignore: must_be_immutable
 class NowPlayingScreen extends StatefulWidget {

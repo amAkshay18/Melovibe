@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:offlinemusicplayer/database/model/song_model.dart';
-import 'package:offlinemusicplayer/screens/playlist/add_to_playlists_screen.dart';
-import 'package:offlinemusicplayer/screens/splash_screen.dart';
+import 'package:offlinemusicplayer/functions/audio_converter_functions.dart';
+import 'package:offlinemusicplayer/functions/favorites_functions.dart';
+import 'package:offlinemusicplayer/screens/home/home.dart';
+import 'package:offlinemusicplayer/screens/now_playing/nowplaying.dart';
+import 'package:offlinemusicplayer/screens/playlist/add_to_playlist.dart';
+import 'package:offlinemusicplayer/screens/splash/splash.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import '../functions/audio_converter_functions.dart';
-import '../functions/favorites_functions.dart';
-import 'home_screen.dart';
-import 'nowplaying_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({

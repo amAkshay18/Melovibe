@@ -1,6 +1,6 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:offlinemusicplayer/database/model/song_model.dart';
-import '../screens/splash_screen.dart';
+import 'package:offlinemusicplayer/screens/splash/splash.dart';
 
 List<Audio> audioList = [];
 AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();

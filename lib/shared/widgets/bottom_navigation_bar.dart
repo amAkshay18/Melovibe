@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:offlinemusicplayer/screens/playlist/playlist_screen.dart';
-import 'package:offlinemusicplayer/screens/search_screen.dart';
-import 'home_screen.dart';
-import 'mini_player.dart';
+import 'package:offlinemusicplayer/screens/home/home.dart';
+import 'package:offlinemusicplayer/screens/playlist/playlist.dart';
+import 'package:offlinemusicplayer/screens/search/search.dart';
+import 'package:offlinemusicplayer/shared/widgets/mini_player.dart';
 
 final ValueNotifier<int> _currentIndex = ValueNotifier(0);
 
-class BottomNaviScreen extends StatelessWidget {
-  BottomNaviScreen({super.key});
+class BottomNavigationBarWidget extends StatelessWidget {
+  BottomNavigationBarWidget({super.key});
 
   final screen = [
     const ScreenHome(),
