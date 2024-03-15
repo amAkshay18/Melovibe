@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:offlinemusicplayer/database/model/song_model.dart';
-import 'package:offlinemusicplayer/functions/audio_converter_functions.dart';
-import 'package:offlinemusicplayer/functions/favorites_functions.dart';
+import 'package:offlinemusicplayer/functions/audio_converter.dart';
+import 'package:offlinemusicplayer/functions/favorites.dart';
 import 'package:offlinemusicplayer/screens/favorites/favorites.dart';
 import 'package:offlinemusicplayer/screens/melofinder/melo_finder.dart';
 import 'package:offlinemusicplayer/screens/mostly_played/mostly_played.dart';

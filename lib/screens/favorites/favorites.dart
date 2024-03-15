@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:offlinemusicplayer/functions/audio_converter_functions.dart';
-import 'package:offlinemusicplayer/functions/favorites_functions.dart';
+import 'package:offlinemusicplayer/functions/audio_converter.dart';
+import 'package:offlinemusicplayer/functions/favorites.dart';
 import 'package:offlinemusicplayer/screens/now_playing/nowplaying.dart';
 import 'package:offlinemusicplayer/shared/widgets/mini_player.dart';
 import 'package:on_audio_query/on_audio_query.dart';

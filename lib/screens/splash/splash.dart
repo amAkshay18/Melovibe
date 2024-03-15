@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:offlinemusicplayer/database/model/song_model.dart';
-import 'package:offlinemusicplayer/functions/favorites_functions.dart';
-import 'package:offlinemusicplayer/functions/fetch_functions.dart';
-import 'package:offlinemusicplayer/functions/mostly_played_functions.dart';
-import 'package:offlinemusicplayer/functions/recently_played_functions.dart';
+import 'package:offlinemusicplayer/functions/favorites.dart';
+import 'package:offlinemusicplayer/functions/mostly_played.dart';
+import 'package:offlinemusicplayer/functions/recently_played.dart';
+import 'package:offlinemusicplayer/screens/home/home.dart';
 import 'package:offlinemusicplayer/shared/widgets/bottom_navigation_bar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:offlinemusicplayer/database/model/song_model.dart';
+import 'package:offlinemusicplayer/functions/playlist.dart';
 import 'package:offlinemusicplayer/shared/widgets/mini_player.dart';
-import '../../functions/playlist_functions.dart';
 
 class AddToPlaylistsScreen extends StatefulWidget {
   final AllSongModel music;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:offlinemusicplayer/functions/playlist.dart';
 import 'package:offlinemusicplayer/screens/playlist/single_playlist.dart';
-import '../../functions/playlist_functions.dart';
 
 class PlaylistScreen extends StatefulWidget {
   const PlaylistScreen({Key? key}) : super(key: key);

@@ -1,8 +1,8 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
-import 'package:offlinemusicplayer/functions/audio_converter_functions.dart';
-import 'package:offlinemusicplayer/functions/recently_played_functions.dart';
+import 'package:offlinemusicplayer/functions/audio_converter.dart';
+import 'package:offlinemusicplayer/functions/recently_played.dart';
 import 'package:offlinemusicplayer/screens/now_playing/nowplaying.dart';
 import 'package:offlinemusicplayer/screens/splash/splash.dart';
 import 'package:on_audio_query/on_audio_query.dart';
