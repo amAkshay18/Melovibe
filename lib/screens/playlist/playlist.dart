@@ -22,13 +22,11 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // getPlaylist();
     return ValueListenableBuilder(
       valueListenable: playlistnotifier,
       builder: (context, value, child) {
         return Scaffold(
           appBar: AppBar(
-            // automaticallyImplyLeading: false,
             backgroundColor: Colors.grey,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(

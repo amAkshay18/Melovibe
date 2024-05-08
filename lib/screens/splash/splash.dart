@@ -73,7 +73,7 @@ class _ScreenSplashState extends State<ScreenSplash> {
     await Future.delayed(const Duration(seconds: 1));
     hasStoragePermission = await CheckPermission.checkAndRequestPermissions();
     if (hasStoragePermission) {
-      //---------------------------SongFetch-------------------------
+      //=======================================  FETCHHING SONG FROM LOCAL STORAGE  =======================
       List<SongModel> fetchSong = await audioQuery.querySongs();
       for (SongModel element in fetchSong) {
         if (element.fileExtension == 'mp3') {

@@ -46,21 +46,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    // MediaQueryData mediaQueryData = MediaQuery.of(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           bottomSheetTheme:
-              const BottomSheetThemeData(backgroundColor: Colors.transparent)
-          // appBarTheme: AppBarTheme(
-          //     color: mediaQueryData.platformBrightness == Brightness.light
-          //         ? (Colors.black)
-          //         : Colors.grey),
-          // scaffoldBackgroundColor:
-          //     mediaQueryData.platformBrightness == Brightness.light
-          //         ? (Colors.yellow)
-          //         : Colors.red
-          ),
+              const BottomSheetThemeData(backgroundColor: Colors.transparent)),
       home: const ScreenSplash(),
     );
   }

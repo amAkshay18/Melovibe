@@ -27,8 +27,6 @@ class _ScreenHomeState extends State<ScreenHome> {
   final ScrollController controller = ScrollController();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  // Declare the ValueNotifier to hold the list of songs
-
   @override
   void initState() {
     super.initState();
@@ -141,7 +139,7 @@ class _ScreenHomeState extends State<ScreenHome> {
           thumbVisibility: false,
           child: RefreshIndicator(
             color: Colors.grey,
-            onRefresh: fetchSongs, // Call fetchSongs on refresh
+            onRefresh: fetchSongs,
             child: ValueListenableBuilder<List<AllSongModel>>(
               valueListenable: allSongsNotifier,
               builder: (context, allSongs, child) {
@@ -261,7 +259,6 @@ class _ScreenHomeState extends State<ScreenHome> {
                                 Expanded(
                                   child: InkWell(
                                     onTap: () {
-                                      //  recentadd(allSongs[index]);
                                       audioConverter(allSongs, index);
                                       Navigator.push(
                                         context,

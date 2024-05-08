@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:offlinemusicplayer/screens/settings/about_us.dart';
 import 'package:offlinemusicplayer/screens/settings/privacy_policy.dart';
 import 'package:offlinemusicplayer/screens/settings/terms_and_conditions.dart';
-import 'package:share_plus/share_plus.dart'; // Import the share_plus package
+import 'package:share_plus/share_plus.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -45,7 +45,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               title: const Text('Share The App'),
               trailing: IconButton(
                 onPressed: () {
-                  _shareApp(); // Call the share method when the button is pressed
+                  _shareApp();
                 },
                 icon: const Icon(Icons.share),
               ),
@@ -102,10 +102,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  // Method to show the share dialog with a predefined text
+// Method to show the share dialog with a predefined text
   void _shareApp() {
-    const String text =
-        'https://play.google.com/store/apps/details?id=in.Brototype.MeloVibe';
+    const String text = 'live_link_of_the_application';
     Share.share(text);
   }
 }

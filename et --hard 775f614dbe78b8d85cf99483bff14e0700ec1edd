@@ -1,0 +1,59 @@
+[33mcommit 775f614dbe78b8d85cf99483bff14e0700ec1edd[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: imakshayp18 <thisisakshayp18@gmail.com>
+Date:   Sat Mar 16 02:10:10 2024 +0530
+
+    contain duplicates removed
+
+[33mcommit d18346e854832d23636c8bba5b2892a898a804c8[m
+Author: imakshayp18 <thisisakshayp18@gmail.com>
+Date:   Sat Mar 16 02:02:35 2024 +0530
+
+    simple folder structure added
+
+[33mcommit 8b27a18bee2cc6d7d8b49eb4302f6633cbed6189[m
+Author: imakshayp18 <thisisakshayp18@gmail.com>
+Date:   Fri Mar 15 00:44:10 2024 +0530
+
+    Search no result found added successfully
+
+[33mcommit 2fdb1c357f9def5b4dc200afaeca2a180f640dd2[m
+Author: imakshayp18 <thisisakshayp18@gmail.com>
+Date:   Fri Jul 21 19:54:29 2023 +0530
+
+    Melofinder feature added
+
+[33mcommit df4999d7e9cdfb9a26b0b56f601576005f97df43[m
+Author: imakshayp18 <thisisakshayp18@gmail.com>
+Date:   Mon Jul 10 12:04:47 2023 +0530
+
+    containsDuplicates
+
+[33mcommit d57534297ca03df766d86ea3e828a27c04e853f0[m
+Author: imakshayp18 <thisisakshayp18@gmail.com>
+Date:   Thu Jun 29 21:36:26 2023 +0530
+
+    playlist issues alomst fixed
+
+[33mcommit b3a53f530a609d72dc0b6463f9929cca707df443[m
+Author: imakshayp18 <thisisakshayp18@gmail.com>
+Date:   Wed Jun 28 19:17:47 2023 +0530
+
+    playlistdone
+
+[33mcommit 4243d1c8e68f7cdaff849398706a4196f66ff199[m
+Author: imakshayp18 <thisisakshayp18@gmail.com>
+Date:   Sun Jun 25 21:12:40 2023 +0530
+
+    containDuplicates
+
+[33mcommit bd4f30a7837dae2f9e961c2688838bc0b2c52899[m
+Author: imakshayp18 <thisisakshayp18@gmail.com>
+Date:   Sat Jun 17 12:06:49 2023 +0530
+
+    containsDuplicates
+
+[33mcommit 7c846ae00a565f82b230e74af6bc6d7709ad62fc[m
+Author: imakshayp18 <thisisakshayp18@gmail.com>
+Date:   Thu Jun 15 20:19:01 2023 +0530
+
+    first commit

@@ -124,7 +124,7 @@ class _MelofinderScreenState extends State<MelofinderScreen> {
               : Text(
                   music!.title,
                   style: const TextStyle(fontSize: 18),
-                )
+                ),
         ],
       ),
     );
